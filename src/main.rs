@@ -49,13 +49,83 @@ fn write_LCD(number: i32,width: i32,height:i32){
                 bottom.push('_');
                 bottom.push(' ');
             }
-            3 => {}
-            4 => {}
-            5 => {}
-            6 => {}
-            7 => {}
-            8 => {}
-            9 => {}
+            3 => {
+                top.push('_');
+
+                middle.push(' ');
+                middle.push('_');
+                middle.push('|');
+
+                bottom.push(' ');
+                bottom.push('_');
+                bottom.push('|');
+            }
+            4 => {
+                top.push(' ');
+
+                middle.push('|');
+                middle.push('_');
+                middle.push('|');
+
+                bottom.push(' ');
+                bottom.push(' ');
+                bottom.push('|');
+            }
+            5 => {
+                top.push('_');
+
+                middle.push('|');
+                middle.push('_');
+                middle.push(' ');
+
+                bottom.push(' ');
+                bottom.push('_');
+                bottom.push('|');
+            }
+            6 => {
+                top.push('_');
+
+                middle.push('|');
+                middle.push('_');
+                middle.push(' ');
+
+                bottom.push('|');
+                bottom.push('_');
+                bottom.push('|');
+            }
+            7 => {
+                top.push('_');
+
+                middle.push(' ');
+                middle.push(' ');
+                middle.push('|');
+
+                bottom.push(' ');
+                bottom.push(' ');
+                bottom.push('|');
+            }
+            8 => {
+                top.push('_');
+
+                middle.push('|');
+                middle.push('_');
+                middle.push('|');
+
+                bottom.push('|');
+                bottom.push('_');
+                bottom.push('|');
+            }
+            9 => {
+                top.push('_');
+
+                middle.push('|');
+                middle.push('_');
+                middle.push('|');
+
+                bottom.push(' ');
+                bottom.push('_');
+                bottom.push('|');
+            }
             _ => eprintln!("Invalid number! Expecting 0-9")
         }
         top.push(' ');
