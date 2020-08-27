@@ -1,9 +1,9 @@
 fn main() {
-    write_LCD(0123456789,1,1);
+    write_LCD(123456789000,1,1);
 }
 
 
-fn get_digits(num: i32) -> impl Iterator<Item = u32> {
+fn get_digits(num: isize) -> impl Iterator<Item = u32> {
     num.to_string()
         .chars()
         .map(|d| d.to_digit(10).unwrap())
@@ -11,13 +11,15 @@ fn get_digits(num: i32) -> impl Iterator<Item = u32> {
         .into_iter()
 }
 
-fn write_LCD(number: i32,width: i32,height:i32){
+fn write_LCD(number: isize,width: i32,height:i32){
     let mut top = String::new();
     let mut middle = String::new();
     let mut bottom = String::new();
-    
+    let tuple = (&top,&middle,&bottom);
+
     for digit in get_digits(number){
         top.push(' ');
+
         match digit {
             0 => {
                 top.push('_');
@@ -34,9 +36,13 @@ fn write_LCD(number: i32,width: i32,height:i32){
             1 => {
                 top.push(' ');
                 
-                middle.push_str("  |");
+                middle.push(' ');
+                middle.push(' ');
+                middle.push('|');
 
-                bottom.push_str("  |");
+                bottom.push(' ');
+                bottom.push(' ');
+                bottom.push('|');
             }
             2 => {
                 top.push('_');
@@ -130,6 +136,8 @@ fn write_LCD(number: i32,width: i32,height:i32){
         }
         top.push(' ');
     }
+
+    // Print final contents of top middle and bottom to console
     println!("{}",top);
     println!("{}",middle);
     println!("{}",bottom);
