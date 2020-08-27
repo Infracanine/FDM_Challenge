@@ -1,5 +1,12 @@
+use std::env;
+
 fn main() {
-    write_LCD(123456789000,1,1);
+    let args: Vec<String> = env::args().collect();
+    println!("{},{},{}",args[1],args[2],args[3]);
+    let number : isize = args[1].parse().unwrap();
+    let width : isize = args[2].parse().unwrap();
+    let height : isize = args[3].parse().unwrap();
+    write_LCD(number,width,height);
 }
 
 
@@ -11,21 +18,29 @@ fn get_digits(num: isize) -> impl Iterator<Item = u32> {
         .into_iter()
 }
 
-fn write_LCD(number: isize,width: i32,height:i32){
+fn write_LCD(number: isize,width: isize,height:isize){
     let mut top = String::new();
     let mut middle = String::new();
     let mut bottom = String::new();
-    let tuple = (&top,&middle,&bottom);
+
+    if (width == 0 || height == 0){
+        panic!("invalid value of height or width");
+    }
 
     for digit in get_digits(number){
         top.push(' ');
 
         match digit {
             0 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
 
                 middle.push('|');
-                middle.push(' ');
+                for i in 0..width{
+                    middle.push(' ');
+                }
+
                 middle.push('|');
 
                 bottom.push('|');
@@ -34,18 +49,22 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 
             }
             1 => {
-                top.push(' ');
+                for i in 0..width{
+                    top.push(' ');
+                }
                 
                 middle.push(' ');
-                middle.push(' ');
                 middle.push('|');
+                middle.push(' ');
 
                 bottom.push(' ');
-                bottom.push(' ');
                 bottom.push('|');
+                bottom.push(' ');
             }
             2 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
 
                 middle.push(' ');
                 middle.push('_');
@@ -56,7 +75,10 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push(' ');
             }
             3 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
+
 
                 middle.push(' ');
                 middle.push('_');
@@ -67,7 +89,10 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push('|');
             }
             4 => {
-                top.push(' ');
+                for i in 0..width{
+                    top.push(' ');
+                }
+
 
                 middle.push('|');
                 middle.push('_');
@@ -78,7 +103,9 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push('|');
             }
             5 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
 
                 middle.push('|');
                 middle.push('_');
@@ -89,7 +116,10 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push('|');
             }
             6 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
+
 
                 middle.push('|');
                 middle.push('_');
@@ -100,7 +130,10 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push('|');
             }
             7 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
+
 
                 middle.push(' ');
                 middle.push(' ');
@@ -111,7 +144,10 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push('|');
             }
             8 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
+
 
                 middle.push('|');
                 middle.push('_');
@@ -122,7 +158,10 @@ fn write_LCD(number: isize,width: i32,height:i32){
                 bottom.push('|');
             }
             9 => {
-                top.push('_');
+                for i in 0..width{
+                    top.push('_');
+                }
+                
 
                 middle.push('|');
                 middle.push('_');
@@ -134,6 +173,7 @@ fn write_LCD(number: isize,width: i32,height:i32){
             }
             _ => eprintln!("Invalid number! Expecting 0-9")
         }
+
         top.push(' ');
     }
 
